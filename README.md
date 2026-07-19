@@ -28,6 +28,16 @@ Built as a production pipeline covering data engineering, AWS, and ML.
 - Initialized GitHub repository and pushed initial structure
 
 ### Day 2
-
+- Created `config.yaml` as the central source of truth for the entire pipeline
+- Configured all 4 surf locations (Pensacola Beach, Cocoa Beach, Waikiki, 
+  Huntington Beach) with coordinates and NOAA buoy IDs
+- Added both world record benchmarks (Lituya Bay 1720ft, Nazaré 86ft) 
+  with cause metadata and surfability flags
+- Set up scoring weights for surf potential index
+- Configured data paths and AWS placeholders for future phases
+- Created `.env` file locally to store API keys securely (not pushed to GitHub)
+- Created `.gitignore` to protect sensitive files, API keys, and data folders
+  from being pushed to GitHub
+- Registered for NOAA API token for Day 3 data extraction
 
 ### Day 3 — 

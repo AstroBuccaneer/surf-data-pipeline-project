@@ -1,0 +1,85 @@
+# Surf Data Pipeline - Central Configuration
+
+# ── Benchmark Reference Points ──────────────────────────────────────────────
+benchmarks:
+  lituya_bay:
+    name: "Lituya Bay Megatsunami"
+    location: "Lituya Bay, Alaska"
+    year: 1958
+    wave_height_ft: 1720
+    wave_height_m: 524
+    cause: "Landslide triggered by magnitude 7.8 earthquake"
+    surfable: false
+
+  nazare:
+    name: "Nazaré Big Wave Record"
+    location: "Nazaré, Portugal"
+    year: 2020
+    wave_height_ft: 86
+    wave_height_m: 26.2
+    cause: "Underwater canyon amplifying Atlantic swell"
+    surfer: "Sebastian Steudtner"
+    surfable: true
+
+# ── Surf Locations ───────────────────────────────────────────────────────────
+locations:
+  pensacola_beach:
+    name: "Pensacola Beach"
+    state: "Florida"
+    lat: 30.3366
+    lon: -87.1514
+    noaa_buoy_id: "42039"
+    primary_cause: "hurricane"
+    notes: "Gulf of Mexico, hurricane-driven swells"
+
+  cocoa_beach:
+    name: "Cocoa Beach"
+    state: "Florida"
+    lat: 28.3200
+    lon: -80.6076
+    noaa_buoy_id: "41009"
+    primary_cause: "tropical_storm"
+    notes: "Atlantic coast, tropical storm and hurricane swells"
+
+  waikiki:
+    name: "Waikiki"
+    state: "Hawaii"
+    lat: 21.2769
+    lon: -157.8286
+    noaa_buoy_id: "51201"
+    primary_cause: "pacific_swell"
+    notes: "Sheltered bay, south and north pacific swells"
+
+  huntington_beach:
+    name: "Huntington Beach"
+    state: "California"
+    lat: 33.6595
+    lon: -117.9988
+    noaa_buoy_id: "46086"
+    primary_cause: "pacific_swell"
+    notes: "Open coast, north and south pacific swells"
+
+# ── Surf Score Weights ───────────────────────────────────────────────────────
+scoring:
+  peak_magnitude_weight: 0.50
+  surfable_event_frequency_weight: 0.30
+  cause_recurrence_weight: 0.20
+  ceiling_benchmark: "nazare"
+
+# ── Data Paths ───────────────────────────────────────────────────────────────
+paths:
+  raw: "data/raw/"
+  processed: "data/processed/"
+  final: "data/final/"
+
+# ── API Keys (replace with your actual keys) ─────────────────────────────────
+api_keys:
+  noaa_token: "YOUR_NOAA_TOKEN_HERE"
+  usgs_token: "YOUR_USGS_TOKEN_HERE"
+
+# ── AWS Config (Phase 2+) ────────────────────────────────────────────────────
+aws:
+  region: "us-east-1"
+  s3_bucket_raw: "surf-pipeline-raw"
+  s3_bucket_processed: "surf-pipeline-processed"
+  s3_bucket_final: "surf-pipeline-final"

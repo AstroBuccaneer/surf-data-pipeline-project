@@ -1,0 +1,25 @@
+# Environment variables
+.env
+
+# Data folders - can get large
+data/raw/
+data/processed/
+data/final/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# AWS credentials
+.aws/
