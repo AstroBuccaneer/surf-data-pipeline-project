@@ -67,3 +67,19 @@ Built as a production pipeline covering data engineering, AWS, and ML.
 - ChunkedEncodingError caused by unstable network dropping mid-download
 - Fixed with idempotency checkpoint pattern — production standard for 
   long running network dependent pipelines
+
+  ### Day 5
+- Built `extract/usgs_seismic.py` to pull USGS earthquake data for all 4 locations
+- Used lat/lon coordinates from config.yaml to search within 500km radius
+- Filtered to magnitude 4.0+ events ordered by magnitude
+- Results already showing story: Huntington Beach (830) and Waikiki (253) 
+  have far more seismic activity than Pensacola (6) and Cocoa Beach (1)
+- Seismic frequency feeds directly into surf score causative factor weighting
+
+**Design Decisions:**
+- `radius_km=500` — wide enough to catch offshore seismic events that 
+  could generate waves toward each location
+- `minmagnitude=4.0` — filters out small earthquakes that wouldn't affect 
+  wave conditions
+- `orderby=magnitude` — returns the biggest events first which is perfect 
+  for benchmark comparison against Lituya Bay's 7.8 magnitude trigger
