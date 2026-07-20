@@ -40,4 +40,15 @@ Built as a production pipeline covering data engineering, AWS, and ML.
   from being pushed to GitHub
 - Registered for NOAA API token for Day 3 data extraction
 
-### Day 3 — 
+### Day 3
+- Built `extract/noaa_buoy.py` to pull live NOAA NDBC buoy data
+- Successfully pulling real wave height, swell, and wind data for all 4 locations
+- Raw data saved to `data/raw/noaa_wave_data.json`
+
+**Debugging Notes:**
+- Initially used NOAA CDO API with `LOCAL_CLIMATOLOGICAL_DATA` → got 500 error
+  (wrong API for ocean buoy data)
+- Switched to NOAA CO-OPS API with `waves` product → got 400 error
+  (CO-OPS doesn't support wave height as a product)
+- Switched to NOAA NDBC (National Data Buoy Center) → success
+  (NDBC is the correct source for ocean buoy wave height, swell period, and wind speed)
