@@ -52,3 +52,18 @@ Built as a production pipeline covering data engineering, AWS, and ML.
   (CO-OPS doesn't support wave height as a product)
 - Switched to NOAA NDBC (National Data Buoy Center) → success
   (NDBC is the correct source for ocean buoy wave height, swell period, and wind speed)
+
+  ### Day 4
+- Built `extract/noaa_storms.py` to pull NOAA Storm Events data for all 4 locations
+- Debugged Storm Events API — switched to direct CSV file downloads
+- Built directory listing scraper to find exact filenames dynamically
+- Added idempotency checkpoint system — saves each year individually so 
+  pipeline resumes where it left off if connection drops
+- Lost connection mid-run on Huntington Beach 2005, restarted and checkpoint 
+  system skipped already completed Florida files automatically
+- Successfully pulled storm data 2000-2023 for Florida, Hawaii, and California
+
+**Debugging Notes:**
+- ChunkedEncodingError caused by unstable network dropping mid-download
+- Fixed with idempotency checkpoint pattern — production standard for 
+  long running network dependent pipelines
