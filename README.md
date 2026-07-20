@@ -83,3 +83,14 @@ Built as a production pipeline covering data engineering, AWS, and ML.
   wave conditions
 - `orderby=magnitude` — returns the biggest events first which is perfect 
   for benchmark comparison against Lituya Bay's 7.8 magnitude trigger
+
+  ### Day 6
+- Built `extract/benchmarks.py` with hardcoded world record reference data
+- Lituya Bay 1958 — 1720ft megatsunami, seismic cause, not surfable (upper bound)
+- Nazaré 2020 — 86ft by Sebastian Steudtner, swell amplification cause, surfable (scoring ceiling)
+- Benchmarks saved to `data/raw/benchmarks.json`
+
+**Design Decision:**
+- Lituya Bay hardcoded permanently — geological event that will never change
+- Nazaré treated as dynamic in future — WSL records could be broken and 
+  would need automatic updating via Airflow DAG in Phase 3
