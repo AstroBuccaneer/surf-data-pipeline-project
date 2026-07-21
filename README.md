@@ -94,3 +94,20 @@ Built as a production pipeline covering data engineering, AWS, and ML.
 - Lituya Bay hardcoded permanently — geological event that will never change
 - Nazaré treated as dynamic in future — WSL records could be broken and 
   would need automatic updating via Airflow DAG in Phase 3
+
+
+  ### Day 7
+- Built `transform/clean.py` to normalize all raw data sources
+- Parsed NOAA NDBC text format into structured records
+- Handled missing values marked as `MM` converting to null
+- Standardized column names across all 4 locations
+- Results: 21,462 buoy records, 130,012 storm records, 
+  1,090 seismic records, 2 benchmarks
+- All cleaned data saved to `data/processed/`
+
+**Design Decisions:**
+- Parsed raw NOAA NDBC text format into structured records
+- Handled missing values marked as `MM` by converting to None/null
+- Standardized column names across all 4 locations
+- Wave height kept in meters for consistency
+- Saved as CSV for easy loading into star schema
