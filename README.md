@@ -111,3 +111,17 @@ Built as a production pipeline covering data engineering, AWS, and ML.
 - Standardized column names across all 4 locations
 - Wave height kept in meters for consistency
 - Saved as CSV for easy loading into star schema
+
+### Day 8
+- Built `transform/schema.py` to create star schema in SQLite
+- dim_location: 4 surf locations with coordinates and buoy IDs
+- dim_cause: 5 cause types (hurricane, tropical storm, pacific swell, seismic, swell amplification)
+- dim_date: 8,766 days from 2000-2023 tagged with season and hurricane season flag
+- dim_benchmark: 2 world records (Lituya Bay and Nazaré)
+- wave_events: 21,462 fact records with benchmark percentage scores vs Nazaré and Lituya Bay
+- Star schema saved to data/final/surf_pipeline.db
+
+**Design Decisions:**
+- Every buoy reading scored as percentage of both benchmarks directly in fact table
+- Date dimension includes hurricane season flag for seasonal surf analysis
+- Star schema chosen over snowflake for simplicity and query performance
