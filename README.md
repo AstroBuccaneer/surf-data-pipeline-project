@@ -144,3 +144,18 @@ Built as a production pipeline covering data engineering, AWS, and ML.
 - Waikiki strong due to consistent Pacific swells and 253 seismic events
 - Pensacola hurt by low frequency despite recording second highest single wave
 - Cocoa Beach most sheltered — only 1 seismic event and 2% surfable frequency
+
+
+### Day 10
+- Built `sql/create_tables.sql` — star schema DDL definitions
+- Built `sql/rankings.sql` — location rankings using joins, window functions, CTEs
+- Built `sql/analysis.sql` — deep analysis including year over year trends, 
+  best month to surf, Nazaré gap analysis, and quarterly rankings
+- SQL files ready to run against SQLite locally and Athena in Phase 3
+
+**SQL Concepts Covered:**
+- Joins (fact to dimension tables)
+- CTEs (hurricane season comparison)
+- Window functions (RANK, ROW_NUMBER, rolling averages)
+- Aggregations (GROUP BY, HAVING)
+- Conditional aggregations (CASE WHEN)
