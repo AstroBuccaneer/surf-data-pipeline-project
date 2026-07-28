@@ -125,3 +125,22 @@ Built as a production pipeline covering data engineering, AWS, and ML.
 - Every buoy reading scored as percentage of both benchmarks directly in fact table
 - Date dimension includes hurricane season flag for seasonal surf analysis
 - Star schema chosen over snowflake for simplicity and query performance
+
+### Day 9
+- Built `transform/score.py` to calculate surf potential index
+- Three scoring components:
+  - Peak magnitude score (50% weight) — max wave height vs Nazaré benchmark
+  - Surfable frequency score (30% weight) — % of readings above 1.5m
+  - Seismic recurrence score (20% weight) — earthquake frequency and severity
+- Final Rankings:
+  1. Huntington Beach — 81.91
+  2. Waikiki — 55.44
+  3. Pensacola Beach — 46.51
+  4. Cocoa Beach — 41.05
+- Scores saved to data/processed/surf_scores.csv
+
+**Key Insights:**
+- Huntington Beach wins due to 830 seismic events and 39.71% surfable frequency
+- Waikiki strong due to consistent Pacific swells and 253 seismic events
+- Pensacola hurt by low frequency despite recording second highest single wave
+- Cocoa Beach most sheltered — only 1 seismic event and 2% surfable frequency
