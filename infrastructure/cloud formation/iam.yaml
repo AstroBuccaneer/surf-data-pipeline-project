@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Surf Data Pipeline - IAM Roles'
+
+Resources:
+
+  SurfPipelineRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: surf-pipeline-role
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+                - glue.amazonaws.com
+                - states.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+        - arn:aws:iam::aws:policy/AWSGlueFullAccess
+        - arn:aws:iam::aws:policy/AmazonAthenaFullAccess
+        - arn:aws:iam::aws:policy/CloudWatchFullAccess
+
+  SurfPipelineInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      InstanceProfileName: surf-pipeline-instance-profile
+      Roles:
+        - !Ref SurfPipelineRole
+
+Outputs:
+  RoleArn:
+    Value: !GetAtt SurfPipelineRole.Arn
+    Description: ARN of the surf pipeline IAM role

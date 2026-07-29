@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Surf Data Pipeline - RDS Database'
+
+Parameters:
+  DBPassword:
+    Type: String
+    NoEcho: true
+    Description: Password for the RDS database
+
+Resources:
+
+  SurfPipelineDB:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: surf-pipeline-db
+      DBInstanceClass: db.t3.micro
+      Engine: postgres
+      EngineVersion: '15.3'
+      MasterUsername: surfadmin
+      MasterUserPassword: !Ref DBPassword
+      AllocatedStorage: 20
+      StorageType: gp2
+      MultiAZ: false
+      PubliclyAccessible: false
+      BackupRetentionPeriod: 7
+      DeletionPolicy: Snapshot
+
+  SurfPipelineDBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Subnet group for surf pipeline RDS
+      SubnetIds:
+        - !ImportValue SurfPipelineSubnet1
+        - !ImportValue SurfPipelineSubnet2
+
+Outputs:
+  DBEndpoint:
+    Value: !GetAtt SurfPipelineDB.Endpoint.Address
+    Description: RDS endpoint for surf pipeline database
+  DBPort:
+    Value: !GetAtt SurfPipelineDB.Endpoint.Port
+    Description: RDS port

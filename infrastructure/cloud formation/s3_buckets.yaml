@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Surf Data Pipeline - S3 Buckets'
+
+Resources:
+
+  RawDataBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: surf-pipeline-raw-agl
+      VersioningConfiguration:
+        Status: Enabled
+      LifecycleConfiguration:
+        Rules:
+          - Id: MoveToGlacier
+            Status: Enabled
+            Transitions:
+              - TransitionInDays: 90
+                StorageClass: GLACIER
+
+  ProcessedDataBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: surf-pipeline-processed-agl
+      VersioningConfiguration:
+        Status: Enabled
+
+  FinalDataBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: surf-pipeline-final-agl
+      VersioningConfiguration:
+        Status: Enabled
+
+Outputs:
+  RawBucketName:
+    Value: !Ref RawDataBucket
+  ProcessedBucketName:
+    Value: !Ref ProcessedDataBucket
+  FinalBucketName:
+    Value: !Ref FinalDataBucket

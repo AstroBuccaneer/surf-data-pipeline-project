@@ -1,0 +1,60 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Surf Data Pipeline - CloudWatch Alerts",
+    "Resources": {
+        "PipelineFailureAlarm": {
+            "Type": "AWS::CloudWatch::Alarm",
+            "Properties": {
+                "AlarmName": "surf-pipeline-failure",
+                "AlarmDescription": "Triggers when pipeline Lambda function fails",
+                "MetricName": "Errors",
+                "Namespace": "AWS/Lambda",
+                "Statistic": "Sum",
+                "Period": 300,
+                "EvaluationPeriods": 1,
+                "Threshold": 1,
+                "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+                "Dimensions": [
+                    {
+                        "Name": "FunctionName",
+                        "Value": "surf-pipeline-extract-buoy"
+                    }
+                ]
+            }
+        },
+        "PipelineDurationAlarm": {
+            "Type": "AWS::CloudWatch::Alarm",
+            "Properties": {
+                "AlarmName": "surf-pipeline-duration",
+                "AlarmDescription": "Triggers when pipeline runs longer than expected",
+                "MetricName": "Duration",
+                "Namespace": "AWS/Lambda",
+                "Statistic": "Average",
+                "Period": 300,
+                "EvaluationPeriods": 1,
+                "Threshold": 240000,
+                "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+                "Dimensions": [
+                    {
+                        "Name": "FunctionName",
+                        "Value": "surf-pipeline-extract-buoy"
+                    }
+                ]
+            }
+        },
+        "S3UploadFailureAlarm": {
+            "Type": "AWS::CloudWatch::Alarm",
+            "Properties": {
+                "AlarmName": "surf-pipeline-s3-errors",
+                "AlarmDescription": "Triggers when S3 upload errors occur",
+                "MetricName": "5xxError",
+                "Namespace": "AWS/S3",
+                "Statistic": "Sum",
+                "Period": 300,
+                "EvaluationPeriods": 1,
+                "Threshold": 1,
+                "ComparisonOperator": "GreaterThanOrEqualToThreshold"
+            }
+        }
+    }
+}

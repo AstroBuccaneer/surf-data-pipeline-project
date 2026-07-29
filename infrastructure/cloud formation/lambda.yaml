@@ -1,0 +1,73 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Surf Data Pipeline - Lambda Functions'
+
+Parameters:
+  RoleArn:
+    Type: String
+    Description: IAM Role ARN for Lambda execution
+
+Resources:
+
+  ExtractBuoyDataFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: surf-pipeline-extract-buoy
+      Runtime: python3.11
+      Handler: extract.noaa_buoy.fetch_all_locations
+      Role: !Ref RoleArn
+      Timeout: 300
+      MemorySize: 256
+      Environment:
+        Variables:
+          RAW_BUCKET: surf-pipeline-raw-agl
+          PROCESSED_BUCKET: surf-pipeline-processed-agl
+          FINAL_BUCKET: surf-pipeline-final-agl
+
+  ExtractStormDataFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: surf-pipeline-extract-storms
+      Runtime: python3.11
+      Handler: extract.noaa_storms.fetch_all_storm_data
+      Role: !Ref RoleArn
+      Timeout: 300
+      MemorySize: 256
+      Environment:
+        Variables:
+          RAW_BUCKET: surf-pipeline-raw-agl
+
+  ExtractSeismicDataFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: surf-pipeline-extract-seismic
+      Runtime: python3.11
+      Handler: extract.usgs_seismic.fetch_all_seismic_data
+      Role: !Ref RoleArn
+      Timeout: 300
+      MemorySize: 256
+      Environment:
+        Variables:
+          RAW_BUCKET: surf-pipeline-raw-agl
+
+  TransformScoreFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: surf-pipeline-transform-score
+      Runtime: python3.11
+      Handler: transform.score.calculate_final_surf_score
+      Role: !Ref RoleArn
+      Timeout: 300
+      MemorySize: 512
+      Environment:
+        Variables:
+          PROCESSED_BUCKET: surf-pipeline-processed-agl
+
+Outputs:
+  ExtractBuoyFunctionArn:
+    Value: !GetAtt ExtractBuoyDataFunction.Arn
+  ExtractStormFunctionArn:
+    Value: !GetAtt ExtractStormDataFunction.Arn
+  ExtractSeismicFunctionArn:
+    Value: !GetAtt ExtractSeismicDataFunction.Arn
+  TransformScoreFunctionArn:
+    Value: !GetAtt TransformScoreFunction.Arn

@@ -215,3 +215,36 @@ without manual intervention.
 - Created IAM user with only required permissions
 - Principle of least privilege — IAM user only has permissions needed
 - S3 bucket names include initials for global uniqueness
+
+
+### Day 14
+- Completed AWS Foundations layer covering SAA exam domains
+- Built all CloudFormation infrastructure as code files
+- Configured CloudWatch monitoring and alerting
+- Designed VPC architecture for secure resource isolation
+
+**Files Built:**
+- `cloudformation/s3_buckets.yaml` — S3 bucket definitions with versioning
+- `cloudformation/iam.yaml` — IAM roles for Lambda, Glue, and Step Functions
+- `cloudformation/lambda.yaml` — Lambda function definitions for pipeline tasks
+- `cloudformation/rds.yaml` — RDS PostgreSQL database definition
+- `cloudwatch_alerts.json` — 3 alarms for pipeline failures, duration, and S3 errors
+- `iam_roles.md` — IAM roles and permissions documentation
+- `vpc_design.md` — VPC architecture with private subnets and security groups
+- `s3_lifecycle_policy.json` — Cost optimization via S3 storage tier transitions
+
+**AWS Concepts Covered (SAA Exam):**
+- Infrastructure as Code with CloudFormation
+- IAM roles and principle of least privilege
+- VPC design with public and private subnets
+- Security groups and network isolation
+- S3 storage classes and lifecycle policies for cost optimization
+- CloudWatch alarms for pipeline monitoring
+- RDS in private subnet for security
+- S3 VPC endpoints keeping traffic inside AWS network
+
+**Key Design Decisions:**
+- RDS placed in private subnet — never publicly accessible
+- S3 lifecycle policy moves raw data to Glacier after 180 days saving costs
+- CloudWatch alarms trigger on Lambda errors and duration exceeding 4 minutes
+- All infrastructure defined as code — can be redeployed anywhere in minutes
