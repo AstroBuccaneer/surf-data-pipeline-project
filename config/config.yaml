@@ -80,6 +80,6 @@ api_keys:
 # ── AWS Config (Phase 2+) ────────────────────────────────────────────────────
 aws:
   region: "us-east-1"
-  s3_bucket_raw: "surf-pipeline-raw"
-  s3_bucket_processed: "surf-pipeline-processed"
-  s3_bucket_final: "surf-pipeline-final"
+  s3_bucket_raw: "surf-pipeline-raw-agl"
+  s3_bucket_processed: "surf-pipeline-processed-agl"
+  s3_bucket_final: "surf-pipeline-final-agl"

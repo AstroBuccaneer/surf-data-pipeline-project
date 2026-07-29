@@ -198,3 +198,20 @@ Built as a production pipeline covering data engineering, AWS, and ML.
 Directed Acyclic Graph — Airflow's blueprint for pipeline orchestration.
 Defines tasks, dependencies, and schedule so pipeline runs automatically
 without manual intervention.
+
+
+### Day 13
+- Configured AWS CLI with IAM user credentials
+- Created 3 S3 buckets following least privilege IAM best practices
+  - surf-pipeline-raw-agl
+  - surf-pipeline-processed-agl
+  - surf-pipeline-final-agl
+- Built `load/s3_loader.py` to upload all pipeline data to S3
+- Successfully uploaded 11 files to S3 data lake
+- Raw, processed, and final data now living in the cloud
+
+**AWS Best Practices Applied:**
+- Never used root account access keys
+- Created IAM user with only required permissions
+- Principle of least privilege — IAM user only has permissions needed
+- S3 bucket names include initials for global uniqueness
