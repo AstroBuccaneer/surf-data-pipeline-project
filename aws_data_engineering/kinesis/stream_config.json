@@ -1,0 +1,44 @@
+{
+    "StreamName": "surf-pipeline-live-buoy-stream",
+    "ShardCount": 1,
+    "StreamModeDetails": {
+        "StreamMode": "PROVISIONED"
+    },
+    "Tags": {
+        "Project": "surf-data-pipeline",
+        "Environment": "dev",
+        "Owner": "agl"
+    },
+    "RetentionPeriodHours": 24,
+    "Description": "Live buoy data stream for surf pipeline — polls NOAA NDBC every hour and streams readings for all 4 surf locations",
+    "Shards": [
+        {
+            "ShardId": "shardId-000000000000",
+            "PartitionKeys": [
+                "pensacola_beach",
+                "cocoa_beach",
+                "waikiki",
+                "huntington_beach"
+            ]
+        }
+    ],
+    "ProducerConfig": {
+        "PollIntervalSeconds": 3600,
+        "Source": "NOAA_NDBC",
+        "Locations": [
+            "pensacola_beach",
+            "cocoa_beach",
+            "waikiki",
+            "huntington_beach"
+        ]
+    },
+    "ConsumerConfig": {
+        "Destination": "SQLite locally, S3 in production",
+        "ProcessingSteps": [
+            "Parse raw buoy reading",
+            "Calculate benchmark percentages vs Nazare and Lituya Bay",
+            "Flag as surfable if wave height >= 1.5m",
+            "Save to wave_events fact table"
+        ]
+    }
+}

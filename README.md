@@ -248,3 +248,39 @@ without manual intervention.
 - S3 lifecycle policy moves raw data to Glacier after 180 days saving costs
 - CloudWatch alarms trigger on Lambda errors and duration exceeding 4 minutes
 - All infrastructure defined as code — can be redeployed anywhere in minutes
+
+
+### Day 15
+- Built full AWS Data Engineering layer covering DEA exam domains
+- Completed all files in `aws_data_engineering/` folder
+
+**Files Built:**
+- `glue/glue_etl_job.py` — Glue ETL job replacing local transform scripts
+- `glue/glue_crawler_config.json` — Crawler to catalog all S3 buckets
+- `athena/rankings.sql` — Athena ranking queries against S3 data
+- `athena/analysis.sql` — Athena deep analysis with partitioning
+- `lake_formation/access_policy.md` — Fine grained data lake access control
+- `kinesis/producer.py` — Live buoy stream polling NOAA every hour
+- `kinesis/consumer.py` — Reads from Kinesis and saves to database
+- `kinesis/stream_config.json` — Kinesis stream configuration
+- `mwaa/surf_pipeline_dag.py` — Cloud Airflow DAG using Glue and Athena operators
+- `step_functions/pipeline_state_machine.json` — Step Functions orchestration
+
+**AWS Concepts Covered (DEA Exam):**
+- Glue ETL jobs and DynamicFrames
+- Glue Data Catalog and crawlers
+- Athena SQL queries against S3 with partition pruning
+- Lake Formation fine grained access control
+- Kinesis Data Streams — producer and consumer pattern
+- PartitionKey routing data to correct Kinesis shard
+- MWAA managed Airflow with AWS operators
+- Step Functions parallel state execution
+- S3KeySensor waiting for data before pipeline runs
+- Retry logic with exponential backoff
+
+**Kinesis Design:**
+- Producer polls NOAA NDBC every hour and sends to Kinesis stream
+- PartitionKey ensures same location always goes to same shard
+- Consumer reads from stream, calculates benchmark percentages,
+  flags surfable readings and saves to wave_events fact table
+- RetentionPeriodHours: 24 keeps data available for 24 hours

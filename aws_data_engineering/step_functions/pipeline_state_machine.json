@@ -1,0 +1,89 @@
+{
+    "Comment": "Surf Data Pipeline State Machine",
+    "StartAt": "ExtractBuoyData",
+    "States": {
+        "ExtractBuoyData": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:us-east-1:YOUR_ACCOUNT_ID:function:surf-pipeline-extract-buoy",
+            "Next": "ExtractParallel",
+            "Retry": [
+                {
+                    "ErrorEquals": ["Lambda.ServiceException"],
+                    "IntervalSeconds": 5,
+                    "MaxAttempts": 2,
+                    "BackoffRate": 2
+                }
+            ]
+        },
+        "ExtractParallel": {
+            "Type": "Parallel",
+            "Branches": [
+                {
+                    "StartAt": "ExtractStormData",
+                    "States": {
+                        "ExtractStormData": {
+                            "Type": "Task",
+                            "Resource": "arn:aws:lambda:us-east-1:YOUR_ACCOUNT_ID:function:surf-pipeline-extract-storms",
+                            "End": true
+                        }
+                    }
+                },
+                {
+                    "StartAt": "ExtractSeismicData",
+                    "States": {
+                        "ExtractSeismicData": {
+                            "Type": "Task",
+                            "Resource": "arn:aws:lambda:us-east-1:YOUR_ACCOUNT_ID:function:surf-pipeline-extract-seismic",
+                            "End": true
+                        }
+                    }
+                }
+            ],
+            "Next": "RunGlueETL"
+        },
+        "RunGlueETL": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::glue:startJobRun.sync",
+            "Parameters": {
+                "JobName": "surf-pipeline-glue-etl"
+            },
+            "Next": "RunAthenaQuery",
+            "Retry": [
+                {
+                    "ErrorEquals": ["Glue.AWSGlueException"],
+                    "IntervalSeconds": 30,
+                    "MaxAttempts": 2,
+                    "BackoffRate": 2
+                }
+            ]
+        },
+        "RunAthenaQuery": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::athena:startQueryExecution.sync",
+            "Parameters": {
+                "QueryString": "SELECT location, MAX(wave_height_m) FROM surf_pipeline_db.buoy_data_transformed GROUP BY location",
+                "WorkGroup": "primary",
+                "ResultConfiguration": {
+                    "OutputLocation": "s3://surf-pipeline-final-agl/athena-results/"
+                }
+            },
+            "Next": "ScoreLocations"
+        },
+        "ScoreLocations": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:us-east-1:YOUR_ACCOUNT_ID:function:surf-pipeline-transform-score",
+            "Next": "PipelineComplete",
+            "Retry": [
+                {
+                    "ErrorEquals": ["Lambda.ServiceException"],
+                    "IntervalSeconds": 5,
+                    "MaxAttempts": 2,
+                    "BackoffRate": 2
+                }
+            ]
+        },
+        "PipelineComplete": {
+            "Type": "Succeed"
+        }
+    }
+}

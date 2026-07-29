@@ -1,0 +1,27 @@
+{
+    "Name": "surf-pipeline-crawler",
+    "Role": "arn:aws:iam::YOUR_ACCOUNT_ID:role/surf-pipeline-role",
+    "DatabaseName": "surf_pipeline_db",
+    "Targets": {
+        "S3Targets": [
+            {
+                "Path": "s3://surf-pipeline-raw-agl/raw/",
+                "Exclusions": []
+            },
+            {
+                "Path": "s3://surf-pipeline-processed-agl/processed/",
+                "Exclusions": []
+            },
+            {
+                "Path": "s3://surf-pipeline-final-agl/final/",
+                "Exclusions": []
+            }
+        ]
+    },
+    "SchemaChangePolicy": {
+        "UpdateBehavior": "UPDATE_IN_DATABASE",
+        "DeleteBehavior": "LOG"
+    },
+    "Schedule": "cron(0 6 ? * MON *)",
+    "Description": "Crawls all surf pipeline S3 buckets and updates Glue Data Catalog"
+}
