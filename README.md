@@ -178,3 +178,23 @@ Built as a production pipeline covering data engineering, AWS, and ML.
 - Java UnsupportedClassVersionError — PySpark requires Java 17+
 - Fixed by downloading Java 17 and setting JAVA_HOME environment variable
 - PyArrow warning is non-critical — Spark fell back to non-optimized conversion
+
+
+### Day 12
+- Built `dags/surf_pipeline_dag.py` — Airflow DAG orchestrating full pipeline
+- 7 tasks defined across extract and transform phases
+- All 4 extract tasks run in parallel, then clean, schema, score run in sequence
+- Scheduled to run every Monday at 6am via cron expression
+- DAG ready to deploy to AWS MWAA in Phase 3
+
+**DAG Design Decisions:**
+- retries: 2 — automatically retries failed tasks twice before giving up
+- retry_delay: 5 minutes — waits between retries
+- schedule_interval: 0 6 * * 1 — cron for every Monday at 6am
+- catchup=False — don't backfill missed runs if pipeline was down
+- Parallel extract tasks reduce total pipeline runtime significantly
+
+**What is a DAG:**
+Directed Acyclic Graph — Airflow's blueprint for pipeline orchestration.
+Defines tasks, dependencies, and schedule so pipeline runs automatically
+without manual intervention.
