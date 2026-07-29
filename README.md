@@ -159,3 +159,22 @@ Built as a production pipeline covering data engineering, AWS, and ML.
 - Window functions (RANK, ROW_NUMBER, rolling averages)
 - Aggregations (GROUP BY, HAVING)
 - Conditional aggregations (CASE WHEN)
+
+
+### Day 11
+- Built `spark/pyspark_transform.py` to reprocess data at scale with PySpark
+- Fixed Java version error — upgraded from Java 8 to Java 17
+- Successfully loaded 21,462 buoy, 130,012 storm, 1,090 seismic records into Spark
+- PySpark transformations mirror pandas version confirming data consistency
+- Results saved to data/final/
+
+**PySpark vs Pandas:**
+- F.when() is equivalent to CASE WHEN in SQL
+- Window.partitionBy() is equivalent to PARTITION BY in SQL
+- F.rank().over(window) is your window function in Python
+- spark.sql.shuffle.partitions set to 4 for small local dataset
+
+**Debugging Notes:**
+- Java UnsupportedClassVersionError — PySpark requires Java 17+
+- Fixed by downloading Java 17 and setting JAVA_HOME environment variable
+- PyArrow warning is non-critical — Spark fell back to non-optimized conversion
