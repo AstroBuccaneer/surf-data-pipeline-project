@@ -284,3 +284,23 @@ without manual intervention.
 - Consumer reads from stream, calculates benchmark percentages,
   flags surfable readings and saves to wave_events fact table
 - RetentionPeriodHours: 24 keeps data available for 24 hours
+
+### Day 16
+- Built `ml/sagemaker/preprocessing.py` for ML feature engineering
+- Discovered NOAA NDBC realtime API only returns 45 days of data
+- Fixed by switching to NOAA NDBC historical endpoint
+- Extended date range from 2020 to 2010 for better ML training data
+- Fixed 99.0 missing data code being read as real wave height
+- Final dataset: 603,807 buoy records, 646 monthly features
+- Train/test split: 513 training, 129 test records, 15 features
+
+**Key Lessons:**
+- Data range directly impacts ML model accuracy
+- Always validate data ranges before training
+- 99.0 is a common NOAA missing data sentinel value
+- More historical data revealed Waikiki as top ranked location
+  changing results from the 4 year dataset
+
+**Files Updated:**
+- `extract/noaa_buoy.py` — switched to historical endpoint, extended to 2010
+- `transform/clean.py` — added < 30m filter to catch 99.0 sentinel values

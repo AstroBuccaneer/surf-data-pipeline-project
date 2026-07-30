@@ -37,11 +37,11 @@ def clean_buoy_data():
                         "day": int(values[2]),
                         "hour": int(values[3]),
                         "minute": int(values[4]),
-                        "wave_height_m": float(values[8]) if values[8] != "MM" else None,
-                        "dominant_period_sec": float(values[9]) if len(values) > 9 and values[9] != "MM" else None,
-                        "wind_speed_ms": float(values[6]) if values[6] != "MM" else None,
+                        "wave_height_m": float(values[8]) if values[8] != "MM" and float(values[8]) < 30 else None,
+                        "dominant_period_sec": float(values[9]) if len(values) > 9 and values[9] != "MM" and float(values[9]) < 100 else None,
+                        "wind_speed_ms": float(values[6]) if values[6] != "MM" and float(values[6]) < 100 else None,
                         "source": "NOAA_NDBC"
-                    }
+                            }
                     all_records.append(record)
                 except (ValueError, IndexError):
                     continue
