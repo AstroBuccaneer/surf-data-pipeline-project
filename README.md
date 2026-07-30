@@ -333,4 +333,30 @@ of future surf conditions — confirmed by feature importance analysis
 - 70% R2 is strong for oceanographic prediction — weather data is 
   inherently noisy so perfect prediction is impossible
 
-  
+
+  ### Day 18
+- Built `ml/sagemaker/evaluate.py` — deep model evaluation
+- Built `ml/sagemaker/deploy.py` — deployment simulation with S3 upload
+- Model uploaded to s3://surf-pipeline-final-agl/models/
+
+**Evaluation Results:**
+- RMSE: 0.2446m — predictions off by 24cm on average
+- MAE: 0.1849m — mean absolute error
+- R2: 0.7044 — explains 70% of wave variance
+- MAPE: 15% — average percentage error
+- 72.1% of predictions within 20% of actual value
+- 97.7% of predictions within 50% of actual value
+
+**Deployment:**
+- Model serialized with pickle and uploaded to S3
+- Endpoint simulation predicts next month wave height per location
+- Predictions uploaded to S3 for downstream consumption
+- In production this would be a live SageMaker endpoint serving
+  real time predictions via REST API
+
+**MLOps Patterns Applied:**
+- Model versioning via metadata JSON
+- Artifacts stored in S3 with clear naming convention
+- Evaluation separate from training for clean auditing
+- Predictions uploaded to S3 for downstream consumption
+
