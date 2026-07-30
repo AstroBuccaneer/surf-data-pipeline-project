@@ -304,3 +304,33 @@ without manual intervention.
 **Files Updated:**
 - `extract/noaa_buoy.py` — switched to historical endpoint, extended to 2010
 - `transform/clean.py` — added < 30m filter to catch 99.0 sentinel values
+
+
+### Day 17
+- Built `ml/sagemaker/train.py` training 3 ML models
+- Models compared: Linear Regression, Random Forest, Gradient Boosting
+- Winner: Random Forest — RMSE 0.2446, MAE 0.1850, R2 0.7044
+- Fixed NaN values using SimpleImputer with mean strategy
+- Top features: avg wave height (27.8%), Nazaré % (17%), surfable % (15%)
+- Best model saved to data/final/best_model.pkl
+
+**Model Evaluation Metrics:**
+- RMSE — average prediction error in meters
+- MAE — mean absolute error in meters  
+- R2 — how well model explains variance (0.70 is solid for weather data)
+
+**Key Insight:**
+Historical wave patterns and seasonality are the strongest predictors
+of future surf conditions — confirmed by feature importance analysis
+
+**Debugging Notes:**
+- ValueError: Input X contains NaN — fixed with SimpleImputer mean strategy
+
+**Why Random Forest Won:**
+- Handles non-linear relationships between wave height and season
+- Less sensitive to outliers than Linear Regression
+- More interpretable than Gradient Boosting via feature importance
+- 70% R2 is strong for oceanographic prediction — weather data is 
+  inherently noisy so perfect prediction is impossible
+
+  
