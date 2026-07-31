@@ -360,3 +360,33 @@ of future surf conditions — confirmed by feature importance analysis
 - Evaluation separate from training for clean auditing
 - Predictions uploaded to S3 for downstream consumption
 
+### Day 19
+- Built full RAG pipeline in `ml/rag/`
+- `embeddings.py` — chunks and embeds knowledge base into FAISS vector store
+- `retriever.py` — semantic search retrieving relevant context per query
+- `generator.py` — synthesizes answers from retrieved context
+- Knowledge base covers benchmarks, locations, surf scores, beginner guide
+- Added beginner surf location document expanding knowledge base to 4 docs
+- 12 embeddings in FAISS vector store
+
+**RAG Pipeline Flow:**
+1. Documents chunked into 500 character pieces with 50 char overlap
+2. HuggingFace all-MiniLM-L6-v2 converts chunks to vector embeddings
+3. FAISS stores embeddings for fast similarity search
+4. Query converted to embedding and compared against stored vectors
+5. Top 3 most similar chunks retrieved as context
+6. Context passed to generator to synthesize answer
+
+**Why HuggingFace over OpenAI:**
+- Completely free — no API costs
+- Runs locally — no data leaves machine
+- Open source — no vendor lock in
+- Production viable — many companies use open source embeddings
+
+**In Production:**
+- Would use AWS Bedrock instead of simple text generator
+- Bedrock would generate natural language answers from retrieved context
+- Knowledge base would auto update when new NOAA reports published
+
+
+
