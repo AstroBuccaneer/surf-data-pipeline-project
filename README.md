@@ -444,3 +444,20 @@ Run tests:
 \```bash
 pytest tests/ -v
 \```
+
+
+### Day 20
+- Completed `notebooks/exploration.ipynb` with 6 EDA charts
+- Built 3 master runner scripts in `scripts/` folder
+- Completed all docs — data model, surf score formula, 
+  benchmark research, AWS architecture
+- All 45 unit tests passing
+- Project fully complete and pushed to GitHub
+
+**Charts Built:**
+- Surf potential rankings
+- Average wave height by location
+- Seismic events by location
+- Monthly wave height patterns
+- Benchmark comparison vs Nazaré
+- Final EDA summary
