@@ -1,25 +1,68 @@
-# Surf Data Pipeline 🌊
+# 🌊 Surf Data Pipeline
 
 ## Project Overview
-A production-grade data pipeline comparing surf potential across 4 locations —
-Pensacola Beach, Cocoa Beach, Waikiki, and Huntington Beach — scored against
-two world record benchmarks:
-- **Lituya Bay, Alaska (1958)** — largest wave ever recorded (~1,720 ft)
-- **Nazaré, Portugal (2020)** — largest wave ever surfed (~86 ft) by Sebastian Steudtner
+A production-grade end-to-end data pipeline comparing surf potential
+across 4 US locations — Pensacola Beach, Cocoa Beach, Waikiki, and
+Huntington Beach — scored against two world record benchmarks:
+
+- **Lituya Bay, Alaska (1958)** — largest wave ever recorded (1,720 ft)
+  caused by a magnitude 7.8 earthquake triggered rockslide
+- **Nazaré, Portugal (2020)** — largest wave ever surfed (86 ft)
+  by Sebastian Steudtner via underwater canyon amplification
 
 ## The So What
-A data-driven answer to where and when to chase the best waves — backed by 
-historical weather data, seismic records, and machine learning predictions.
-Built as a production pipeline covering data engineering, AWS, and ML.
+A data-driven answer to where and when to chase the best waves —
+backed by 14 years of NOAA buoy data, USGS seismic records, and
+NOAA storm events. Built as a production pipeline covering data
+engineering, AWS, and machine learning — doubling as prep for
+AWS SAA, DEA, and MLA certifications.
+
+## Final Rankings
+| Rank | Location | Surf Score | Key Strength |
+|---|---|---|---|
+| 1 | Waikiki | 67.41 | Consistent Pacific swells |
+| 2 | Huntington Beach | 64.81 | Highest seismic activity |
+| 3 | Cocoa Beach | 57.13 | Highest single wave recorded |
+| 4 | Pensacola Beach | 53.47 | Most beginner friendly |
 
 ## Tech Stack
-- Python, Pandas, PySpark, SQL, SQLite
-- Apache Airflow
-- AWS (S3, Glue, Athena, Lambda, Kinesis, SageMaker, Bedrock)
-- CloudFormation
+- **Languages:** Python, SQL
+- **Data Engineering:** Pandas, PySpark, SQLite, Apache Airflow
+- **AWS:** S3, Glue, Athena, Lambda, Kinesis, MWAA, Step Functions,
+  SageMaker, Bedrock, Lake Formation, CloudWatch, CloudFormation
+- **ML:** Scikit-learn, Random Forest, RAG, HuggingFace, FAISS
+- **Infrastructure:** CloudFormation, VPC, IAM
+
+## Data Sources
+- NOAA NDBC — 14 years of hourly buoy readings (1.2M records)
+- NOAA Storm Events — 23 years of hurricane and storm records
+- USGS Earthquake API — seismic events within 500km per location
+- Hardcoded benchmarks — Lituya Bay and Nazaré world records
+
+## Project Architecture
+See `docs/aws_architecture.md` for full architecture documentation
+and `infrastructure/architecture.png` for visual diagram.
 
 ## Data Model
-- Star schema with fact table `wave_events` and dimensions for location, cause, date, and benchmark
+Star schema with 1 fact table and 4 dimension tables.
+See `docs/data_model.md` for full documentation.
+
+## Surf Score Formula
+Three component weighted index scored against Nazaré benchmark.
+See `docs/surf_score_formula.md` for full methodology.
+
+## ML Model
+Random Forest predicting next month wave height.
+- Training samples: 513
+- Test samples: 129
+- R2: 0.7044
+- RMSE: 0.2446 meters
+
+## RAG System
+Natural language Q&A against surf research knowledge base.
+- 4 knowledge base documents
+- 12 FAISS embeddings
+- HuggingFace all-MiniLM-L6-v2 embeddings
 
 ## Project Build Log
 
