@@ -433,3 +433,14 @@ of future surf conditions — confirmed by feature importance analysis
 
 
 
+## Test Suite
+45 unit tests across 3 test files — all passing
+
+- `tests/test_extract.py` — 11 tests covering benchmarks and raw data files
+- `tests/test_transform.py` — 15 tests covering cleaned data and star schema
+- `tests/test_score.py` — 19 tests covering surf scores, SQL queries, and ML outputs
+
+Run tests:
+\```bash
+pytest tests/ -v
+\```
