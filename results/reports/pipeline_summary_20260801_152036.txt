@@ -1,0 +1,32 @@
+======================================================================
+SURF DATA PIPELINE — FULL SUMMARY REPORT
+Generated: 2026-08-01 15:20 UTC
+======================================================================
+
+SURF POTENTIAL RANKINGS
+----------------------------------------
+#1 Waikiki              Score: 67.41
+#2 Huntington Beach     Score: 64.81
+#3 Cocoa Beach          Score: 57.13
+#4 Pensacola Beach      Score: 53.47
+
+ML MODEL PERFORMANCE
+----------------------------------------
+Model   : Random Forest
+R2      : 0.7044
+RMSE    : 0.2446m
+MAE     : 0.185m
+
+EVALUATION RESULTS
+----------------------------------------
+MAPE    : 15.0%
+Within 20% accuracy: 72.1%
+Within 50% accuracy: 97.7%
+
+DATA SUMMARY
+----------------------------------------
+Buoy records    : 1,292,600
+Storm records   : 130,012
+Seismic records : 1,090
+Date range      : 2010 - 2023
+Test suite      : 45/45 passing
