@@ -461,3 +461,14 @@ pytest tests/ -v
 - Monthly wave height patterns
 - Benchmark comparison vs Nazaré
 - Final EDA summary
+
+
+## Installation
+
+```bash
+git clone https://github.com/AstroBuccaneer/surf-data-pipeline
+cd surf-data-pipeline
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
