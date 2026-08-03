@@ -1,0 +1,76 @@
+PENSACOLA BEACH — LOCATION RESEARCH REPORT
+==========================================
+
+Location: Pensacola Beach, Florida, USA
+Coordinates: 30.3366N, 87.1514W
+NOAA Buoy ID: 42039
+Region: Gulf of Mexico
+Primary Wave Cause: Hurricane and Tropical Storm Swells
+
+SURF POTENTIAL SCORE
+--------------------
+Overall Score    : 53.47 / 100
+Rank             : #4 of 4 locations
+Peak Wave Height : 9.36m (30.71ft)
+% of Nazaré      : 35.73%
+Surfable Freq    : 17.60%
+Seismic Score    : 0.72
+
+WAVE CHARACTERISTICS
+--------------------
+Average Wave Height : 0.97 meters
+Maximum Wave Height : 9.36 meters (30.71 feet)
+Primary Swell Type  : Hurricane generated swells
+Secondary Swell     : Cold front generated waves
+Typical Wave Period : 6-10 seconds
+
+GEOGRAPHIC CONTEXT
+------------------
+Pensacola Beach sits on a barrier island on the Gulf of Mexico
+coast of Florida. The Gulf of Mexico is a semi-enclosed body of
+water which limits the fetch — the distance over which wind can
+blow to generate waves — compared to open ocean locations.
+This fetch limitation means waves are generally smaller than
+Atlantic or Pacific coast locations except during major hurricanes.
+
+METEOROLOGICAL DRIVERS
+-----------------------
+The primary wave driver at Pensacola Beach is hurricane and
+tropical storm activity in the Gulf of Mexico. Hurricane season
+runs from June through November with peak activity in August
+and September. Notable hurricanes that generated significant
+wave events include:
+- Hurricane Ivan (2004) — Category 4 landfall near Pensacola
+- Hurricane Katrina (2005) — Significant surge and wave activity
+- Hurricane Sally (2020) — Direct hit on Pensacola Beach
+
+SEISMIC ACTIVITY
+----------------
+Seismic activity near Pensacola Beach is minimal. Only 6 earthquake
+events above magnitude 4.0 were recorded within 500km during the
+study period (2000-2023). The maximum magnitude recorded was 5.9.
+The Gulf of Mexico region is not near major tectonic plate boundaries
+making large seismic wave generation events extremely unlikely.
+
+BEST SURF CONDITIONS
+--------------------
+Best Season     : Late summer and fall (hurricane season)
+Best Conditions : During and after tropical storm passage
+Experience Level: Beginner to intermediate
+Average Surfable Days: 17.60% of total readings above 1.5m
+
+BEGINNER FRIENDLINESS
+---------------------
+Pensacola Beach is the most beginner friendly location in the
+pipeline due to its consistently small wave heights. The low
+average wave height of 0.97 meters and calm Gulf of Mexico
+conditions make it ideal for learning to surf. Waves are
+manageable most of the year with only occasional large swells
+during hurricane season.
+
+SOURCES
+-------
+- NOAA NDBC Buoy 42039 Historical Data
+- NOAA Storm Events Database
+- USGS Earthquake Hazards Program
+- National Hurricane Center Historical Records

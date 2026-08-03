@@ -1,0 +1,90 @@
+COCOA BEACH — LOCATION RESEARCH REPORT
+==========================================
+
+Location: Cocoa Beach, Florida, USA
+Coordinates: 28.3200N, 80.6076W
+NOAA Buoy ID: 41009
+Region: Atlantic Coast
+Primary Wave Cause: Hurricane and Nor'easter Swells
+
+SURF POTENTIAL SCORE
+--------------------
+Overall Score    : 57.13 / 100
+Rank             : #3 of 4 locations
+Peak Wave Height : 9.74m (31.96ft)
+% of Nazaré      : 37.18%
+Surfable Freq    : 23.70%
+Seismic Score    : 0.12
+
+WAVE CHARACTERISTICS
+--------------------
+Average Wave Height : 0.62 meters
+Maximum Wave Height : 9.74 meters (31.96 feet)
+Primary Swell Type  : Atlantic hurricane swells
+Secondary Swell     : Nor'easter generated waves
+Typical Wave Period : 7-12 seconds
+
+GEOGRAPHIC CONTEXT
+------------------
+Cocoa Beach sits on Florida's Space Coast on the Atlantic Ocean
+directly east of Cape Canaveral. Unlike Pensacola Beach on the
+Gulf of Mexico Cocoa Beach is exposed to the open Atlantic Ocean
+giving it greater fetch for wave generation. The Atlantic Ocean
+allows swells to travel long distances before reaching the coast
+which can produce longer period and higher quality waves than
+the Gulf of Mexico.
+
+METEOROLOGICAL DRIVERS
+-----------------------
+Two primary weather systems drive wave activity at Cocoa Beach:
+
+1. Atlantic Hurricanes — The Atlantic hurricane season runs
+June through November. Hurricanes tracking up the East Coast
+or making landfall in Florida generate significant swells at
+Cocoa Beach. The open Atlantic exposure means swells can build
+over longer distances than Gulf locations.
+
+2. Nor'easters — Winter storms called nor'easters track up
+the East Coast generating strong northeast winds and significant
+wave activity. These storms can produce some of the largest
+non-hurricane waves at Cocoa Beach during winter months.
+
+HIGHEST WAVE EVENT
+------------------
+Cocoa Beach recorded the highest single wave of all 4 locations
+in the pipeline at 9.74 meters (31.96 feet) reaching 37.18% of
+the Nazaré benchmark. This event likely occurred during a major
+hurricane or nor'easter passage when Atlantic swells were at
+their maximum.
+
+SEISMIC ACTIVITY
+----------------
+Seismic activity near Cocoa Beach is extremely minimal. Only 1
+earthquake event above magnitude 4.0 was recorded within 500km
+during the study period. The Atlantic coast of Florida is far
+from major tectonic plate boundaries making seismic wave
+generation virtually impossible. This low seismic score
+significantly impacts the overall surf potential ranking.
+
+BEST SURF CONDITIONS
+--------------------
+Best Season      : Fall (hurricane season) and Winter (nor'easters)
+Best Conditions  : During major Atlantic storm systems
+Experience Level : Beginner to intermediate
+Average Surfable Days: 23.70% of total readings above 1.5m
+
+HISTORICAL SURF CULTURE
+------------------------
+Cocoa Beach has a strong surf culture and is home to Ron Jon
+Surf Shop one of the most famous surf shops in the world.
+The Ron Jon Easter Surfing Festival has been held at Cocoa
+Beach since 1964 making it one of the longest running surf
+competitions in the United States.
+
+SOURCES
+-------
+- NOAA NDBC Buoy 41009 Historical Data
+- NOAA Storm Events Database
+- USGS Earthquake Hazards Program
+- National Hurricane Center Historical Records
+- Eastern Surf Magazine — Cocoa Beach Surf History

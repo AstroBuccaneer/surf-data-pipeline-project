@@ -1,0 +1,80 @@
+NOAA STORM EVENTS — DATA SOURCE GUIDE
+==========================================
+
+Source: NOAA Storm Events Database
+Agency: National Centers for Environmental Information (NCEI)
+Website: https://www.ncei.noaa.gov/pub/data/swdi/stormevents/
+Data Type: Historical storm event records by state and year
+
+OVERVIEW
+--------
+The NOAA Storm Events Database contains records of significant
+weather phenomena that caused deaths injuries property damage
+or other impacts in the United States. Records date back to
+January 1950 and are updated monthly with new events.
+
+The database covers all 50 US states plus territories and
+includes over 50 different types of weather events from
+hurricanes and tornadoes to thunderstorms and coastal flooding.
+
+DATA USED IN SURF PIPELINE
+---------------------------
+The surf pipeline extracts storm events for 3 states covering
+the 4 surf locations:
+
+Florida (FIPS 12) — Pensacola Beach and Cocoa Beach
+  Events tracked : Hurricane Tropical Storm High Surf Heavy Surf
+  Date range     : 2000 - 2023
+  Records        : Included in 130,012 total storm records
+
+Hawaii (FIPS 15) — Waikiki
+  Events tracked : Hurricane Tropical Storm High Surf Heavy Surf
+  Date range     : 2000 - 2023
+  Records        : Included in 130,012 total storm records
+
+California (FIPS 06) — Huntington Beach
+  Events tracked : Hurricane Tropical Storm High Surf Heavy Surf
+  Date range     : 2000 - 2023
+  Records        : Included in 130,012 total storm records
+
+FILE FORMAT
+-----------
+Data is stored as gzipped CSV files organized by year:
+StormEvents_details-ftp_v1.0_d{year}_c{date}.csv.gz
+
+The pipeline dynamically discovers the correct filename for
+each year by scraping the NOAA directory listing rather than
+hardcoding filenames. This handles the changing date suffix
+in each filename automatically.
+
+KEY COLUMNS
+-----------
+BEGIN_YEARMONTH  — Year and month of event start
+STATE            — US state name
+EVENT_TYPE       — Type of weather event
+MAGNITUDE        — Intensity measure where applicable
+DEATHS_DIRECT    — Direct fatalities from event
+DAMAGE_PROPERTY  — Property damage estimate
+
+IDEMPOTENCY PATTERN
+-------------------
+The storm data extraction uses a checkpoint system that saves
+each year's data as a separate JSON file in data/raw/storms/.
+If the download is interrupted the pipeline detects which
+years already completed and skips them on restart. This
+idempotency pattern is critical for reliable production
+pipelines especially for long running network dependent jobs.
+
+TOTAL RECORDS
+-------------
+Total storm records extracted : 130,012
+States covered               : Florida Hawaii California
+Years covered                : 2000 - 2023
+Event types                  : Hurricane Tropical Storm
+                               High Surf Heavy Surf
+
+SOURCES
+-------
+- NOAA NCEI Storm Events Database Documentation
+- NOAA Storm Data Publication
+- NOAA National Hurricane Center

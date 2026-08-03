@@ -1,0 +1,52 @@
+LITUYA BAY MEGATSUNAMI — RESEARCH DOCUMENT
+==========================================
+
+Event Date: July 9, 1958
+Location: Lituya Bay, Alaska, USA
+Coordinates: 58.6N, 137.5W
+
+WAVE STATISTICS
+---------------
+Maximum Wave Height: 1,720 feet (524 meters)
+Classification: Megatsunami
+Surfable: No
+Status: Largest wave ever recorded in human history
+
+CAUSE OF EVENT
+--------------
+A magnitude 7.8 earthquake struck along the Fairweather Fault
+in Southeast Alaska at 10:16 PM local time. The seismic activity
+triggered a massive rockslide on the northeast wall of Lituya Bay.
+Approximately 90 million tons of rock plunged into the narrow inlet
+at the head of the bay generating a megatsunami.
+
+The unique geography of Lituya Bay — a narrow T-shaped fjord —
+amplified the wave significantly. The wave stripped trees from
+hillsides up to 1,720 feet above sea level on the opposite shore.
+
+GEOLOGICAL CONTEXT
+------------------
+The Fairweather Fault is a major right-lateral strike-slip fault
+running along the coast of Southeast Alaska. It is part of the
+Pacific-North American plate boundary system. The fault is capable
+of generating large earthquakes due to the rapid movement between
+the Pacific Plate and the North American Plate.
+
+RELEVANCE TO SURF PIPELINE PROJECT
+------------------------------------
+Lituya Bay serves as the scientific upper bound benchmark in the
+surf pipeline scoring system. No surfable wave has ever come close
+to this magnitude. It represents the theoretical maximum that
+seismic activity can generate and is used as a reference point
+for understanding the extreme end of wave generation potential.
+
+The seismic cause of this event directly informs the seismic
+recurrence scoring component of the surf potential index. Locations
+with higher seismic activity near major fault systems have greater
+potential for extreme wave generation events.
+
+SOURCES
+-------
+- USGS Earthquake Hazards Program
+- NOAA National Centers for Environmental Information
+- Miller, D.J. (1960) — Giant Waves in Lituya Bay Alaska

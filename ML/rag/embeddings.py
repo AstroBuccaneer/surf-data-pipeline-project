@@ -21,8 +21,26 @@ def load_knowledge_base():
 
     documents = []
 
-    # Load benchmark research
-    benchmark_data = {
+    # Load all text files from knowledge base subfolders
+    knowledge_base_path = "ml/rag/knowledge_base"
+    subfolders = ["benchmark_docs", "location_reports", "noaa_documentation"]
+
+    for subfolder in subfolders:
+        folder_path = os.path.join(knowledge_base_path, subfolder)
+        if os.path.exists(folder_path):
+            for filename in os.listdir(folder_path):
+                if filename.endswith(".txt"):
+                    file_path = os.path.join(folder_path, filename)
+                    with open(file_path, "r", encoding="utf-8") as f:
+                        content = f.read()
+                    documents.append({
+                        "source": f"{subfolder}/{filename}",
+                        "content": content
+                    })
+                    print(f"  ✓ Loaded {subfolder}/{filename}")
+
+    # Also load hardcoded context documents
+    benchmark_summary = {
         "source": "benchmark_research",
         "content": """
         Lituya Bay Megatsunami 1958:
@@ -42,42 +60,9 @@ def load_knowledge_base():
         used as the primary benchmark for scoring surf locations in this project.
         """
     }
-    documents.append(benchmark_data)
+    documents.append(benchmark_summary)
 
-    # Load location research
-    location_data = {
-        "source": "location_research",
-        "content": """
-        Pensacola Beach Florida:
-        Located on the Gulf of Mexico. Primary wave drivers are hurricanes and tropical
-        storms. The Gulf of Mexico limits fetch compared to open ocean locations.
-        Notable hurricanes include Ivan 2004 and Sally 2020. Seismic activity is minimal
-        with only 6 recorded events above magnitude 4.0 within 500km.
-
-        Cocoa Beach Florida:
-        Located on the Atlantic coast near Cape Canaveral. Exposed to Atlantic hurricane
-        swells and nor easter storms. Recorded highest single wave of 9.74 meters during
-        study period. Low seismic activity with only 1 recorded event.
-
-        Waikiki Hawaii:
-        Located on the south shore of Oahu in a sheltered bay. Primary wave drivers are
-        south and north Pacific swells. Hawaii sits on the Pacific Plate near active
-        volcanic and seismic zones. Recorded 253 seismic events above magnitude 4.0
-        within 500km. Consistent Pacific swells give Waikiki the highest surfable
-        frequency of 48.87 percent making it the top ranked location.
-
-        Huntington Beach California:
-        Located on the open Pacific coast in Southern California. Primary wave drivers
-        are north and south Pacific swells and seismic activity. California sits near
-        major fault systems including the San Andreas Fault. Recorded 830 seismic events
-        above magnitude 4.0 within 500km — the highest of all 4 locations. Strong
-        seismic score combined with 40.69 percent surfable frequency makes it the
-        second ranked location.
-        """
-    }
-    documents.append(location_data)
-
-     # ADD YOUR BEGINNER DATA RIGHT HERE
+    # Load beginner research
     beginner_data = {
         "source": "beginner_research",
         "content": """
@@ -97,13 +82,13 @@ def load_knowledge_base():
     }
     documents.append(beginner_data)
 
-    # Load surf scores as document
+    # Load surf scores
     try:
-        scores_df = pd.read_csv(f"data/processed/surf_scores.csv")
+        import pandas as pd
+        scores_df = pd.read_csv("data/processed/surf_scores.csv")
         scores_content = "Surf Potential Rankings:\n"
         for _, row in scores_df.iterrows():
             scores_content += f"{row['location_name']}: score {row['surf_potential_score']} rank {row['rank']}\n"
-
         documents.append({
             "source": "surf_scores",
             "content": scores_content
@@ -111,7 +96,7 @@ def load_knowledge_base():
     except FileNotFoundError:
         print("✗ Surf scores not found — skipping")
 
-    print(f"✓ Loaded {len(documents)} knowledge base documents")
+    print(f"\n✓ Loaded {len(documents)} knowledge base documents")
     return documents
 
 
